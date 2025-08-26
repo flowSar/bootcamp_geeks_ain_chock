@@ -1,14 +1,14 @@
 # ------ Challenge 1
 
-# number = int(input('Enter your number: '))
-# length = int(input('Enter the length of your List: '))
+number = int(input('Enter your number: '))
+length = int(input('Enter the length of your List: '))
 
-# listOfNumber = []
+listOfNumber = []
 
-# for i in range(1, length + 1):
-#     listOfNumber.append(number * i)
+for i in range(1, length + 1):
+    listOfNumber.append(number * i)
 
-# print(f"number: {number} - length {length} ➞ {listOfNumber}")
+print(f"number: {number} - length {length} ➞ {listOfNumber}")
 
 
 # ------ Challenge 2
