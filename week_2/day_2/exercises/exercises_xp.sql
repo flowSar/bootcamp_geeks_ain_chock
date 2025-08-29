@@ -42,10 +42,19 @@ SELECT film_id, title, description, length, rental_rate FROM film WHERE title ~*
 SELECT * FROM film ORDER BY replacement_cost ASC LIMIT 10;
 
 -- question 11
+select replacement_cost from film order by replacement_cost offset 10 fetch next 10 rows only;
 
 -- question 12
+SELECT first_name, last_name, amount, payment_date 
+    FROM customer 
+    JOIN rental ON customer.customer_id=rental.customer_id 
+    JOIN payment ON rental.rental_id=payment.rental_id;
 
 -- question 13
+SELECT *
+    FROM film 
+    LEFT JOIN inventory  ON film.film_id = inventory.film_id
+    WHERE inventory.film_id IS NULL;
 
 -- question 14
 
