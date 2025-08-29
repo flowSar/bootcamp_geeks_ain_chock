@@ -57,4 +57,5 @@ SELECT *
     WHERE inventory.film_id IS NULL;
 
 -- question 14
+SELECT city, country FROM country JOIN city ON country.country_id=city.country_id;
 
