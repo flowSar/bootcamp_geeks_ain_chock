@@ -33,16 +33,16 @@ SELECT address, phone FROM customer JOIN address ON customer.address_id=address.
 SELECT * FROM film WHERE film_id IN(15, 150);
 
 -- question 08
-SELECT film_id, title, description, length, rental_rate FROM film WHERE title='Airport Pollock';
+SELECT film_id, title, description, length, rental_rate FROM film WHERE title='Airport Polock';
 
 -- question 09
 SELECT film_id, title, description, length, rental_rate FROM film WHERE title ~* '^Ai';
 
 -- question 10
-SELECT * FROM film ORDER BY replacement_cost ASC LIMIT 10;
+SELECT * FROM film ORDER BY rental_rate ASC LIMIT 10;
 
 -- question 11
-select replacement_cost from film order by replacement_cost offset 10 fetch next 10 rows only;
+select rental_rate from film order by rental_rate offset 10 fetch next 10 rows only;
 
 -- question 12
 SELECT first_name, last_name, amount, payment_date 
