@@ -1,0 +1,66 @@
+#!/usr/bin/python3
+
+from menu_item import MenuItem
+from menu_manager import MenuManager
+
+def show_user_menu():
+
+    while True:
+        print("\n********* Program Menu *********")
+        print("View an Item (V)")
+        print("Add an Item (A)")
+        print("Delete an Item (D)")
+        print("Update an Item (U)")
+        print("Show the Menu (S)")
+        print("Quit (Q)")
+
+        user_input = input("Enter your choice: ").upper()
+
+        if user_input == "V":
+            pass
+        elif user_input == "A":
+            add_item_to_menu()
+        elif user_input == "D":
+            remove_item_from_menu()
+        elif user_input == "U":
+            update_item_from_menu()
+        elif user_input == "S":
+            show_restaurant_menu()
+        elif user_input == "Q":
+            show_restaurant_menu()
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+def add_item_to_menu():
+    item = input('insert item name: ')
+    price = input('insert item price: ')
+
+    menu_item = MenuItem(name=item, price=price)
+    menu_item.save()
+
+
+def remove_item_from_menu():
+    item = input('insert item name: ')
+
+    menu_item = MenuItem(name=item, price=0)
+    menu_item.delete()
+
+def update_item_from_menu():
+    old_name = input('insert the name of the item you want to update: ')
+    item = input('insert item name: ')
+    price = input('insert item price: ')
+    menu_item = MenuItem(name=old_name, price=0)
+
+    menu_item.update(name=item, price=price)
+
+def show_restaurant_menu():
+    menu_manager = MenuManager()
+    items = menu_manager.all_items()
+    print('restaurant’s menu')
+    for item in items:
+        print(f'{item[1]}: {item[2]}')
+
+
+show_user_menu()
+
