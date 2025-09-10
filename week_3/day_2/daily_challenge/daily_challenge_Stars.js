@@ -1,8 +1,10 @@
 let i = 0;
 
+let stars = "";
 for (i; i < 6; i++) {
   for (let j = 0; j < i + 1; j++) {
-    process.stdout.write("*");
+    stars += "*";
   }
-  console.log("");
+  console.log(stars);
+  stars = "";
 }
