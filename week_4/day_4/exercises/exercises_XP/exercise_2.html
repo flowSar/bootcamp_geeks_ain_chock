@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #myform {
+        width: 200px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="myform" action="exercise_2.html" method="POST">
+      <label for="name">
+        name:
+        <input type="text" name="name" value="" />
+      </label>
+
+      <label for="message">
+        message:
+        <textarea name="message" value=""></textarea>
+      </label>
+
+      <input type="submit" value="Send" />
+    </form>
+    <script src="exercise_2.js"></script>
+  </body>
+</html>
