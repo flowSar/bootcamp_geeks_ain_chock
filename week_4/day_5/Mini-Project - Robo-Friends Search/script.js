@@ -78,12 +78,14 @@ const robots = [
   },
   {
     id: 12,
-    name: "Ervin Howell",
-    username: "Antonette.Howell",
-    email: "ervin.howell@example.org",
+    name: "brahim sar",
+    username: "ibrahimsar",
+    email: "ibra.sar@example.org",
     image: "https://robohash.org/robotcow",
   },
 ];
+
+let debounceTimer;
 
 const gridContainer = document.querySelector(".grid-container");
 const searchBar = document.querySelector(".search-bar");
@@ -95,7 +97,11 @@ searchBar.addEventListener("keyup", (event) => {
     if (robot.name.toLowerCase().includes(searchKeyWord.toLowerCase()))
       return robot;
   });
-  displayRootsCard(searchResult, searchKeyWord);
+
+  clearTimeout(debounceTimer);
+  debounceTimer = setTimeout(() => {
+    displayRootsCard(searchResult, searchKeyWord);
+  }, 300);
 });
 
 const displayRootsCard = (robots, keyword) => {
