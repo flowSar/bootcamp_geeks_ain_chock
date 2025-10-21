@@ -1,0 +1,15 @@
+{
+  "name": "math-app",
+  "version": "1.0.0",
+  "description": "math-app",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node --watch app.js"
+  },
+  "author": "sar",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
