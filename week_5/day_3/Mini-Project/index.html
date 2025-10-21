@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Star War</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style type="text/tailwindcss">
+      @theme {
+        --font-londrina: "Londrina Outline", cursive;
+      }
+    </style>
+
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Londrina+Outline&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body
+    class="h-full bg-[url('https://i.giphy.com/media/TxVVB6PfWMjE4/200.webp')]"
+  >
+    <main class="h-[100vh] flex flex-col justify-center items-center gap-4">
+      <p class="text-white font-londrina text-[8rem]">Star War</p>
+      <div
+        class="h-[16rem] w-[34rem] border-6 rounded-md border-yellow-400 flex flex-col justify-center items-center info-container text-white gap-4 text-xl capitalize font-[Open_Sans] font-bold"
+      ></div>
+      <button
+        class="find-btn bg-white text-black border-3 border-yellow-400 rounded-md py-2 px-6 font-bold"
+      >
+        find someone
+      </button>
+    </main>
+
+    <script src="script.js" type="module"></script>
+  </body>
+</html>
