@@ -25,19 +25,16 @@ export const register = async (req, res) => {
   // check if the email or username already exist
   isExist(filePath, newUser, (data, err) => {
     if (err) {
-      if (data) {
-        return res
-          .status(400)
-          .json({ success: false, user: data, message: err });
-      }
-      return res.status(400).json({ success: false, message: err });
+      const error = new Error(err);
+      error.statusCode = 400;
+      return next(error);
     }
     // register the new user
     writeToFile(filePath, newUser, (user, err) => {
       if (err) {
-        res
-          .status(400)
-          .json({ success: false, message: "register failed", err });
+        const error = new Error("register failed");
+        error.statusCode = 400;
+        return next(error);
       }
       return res.status(201).json({ success: true, user });
     });
@@ -55,9 +52,9 @@ export const login = async (req, res) => {
   const { username, password } = req.body;
 
   if (!username || !password) {
-    return res
-      .status(400)
-      .json({ success: false, message: "please peovide all necessary fields" });
+    const error = new Error("please peovide all necessary fields");
+    error.statusCode = 400;
+    return next(error);
   }
 
   const loginUser = {
@@ -74,18 +71,16 @@ export const login = async (req, res) => {
       const hashedPassword = user.password;
       const verifyPassword = await bcrypt.compare(password, hashedPassword);
 
-      if (verifyPassword) {
-        return res.json({
-          success: true,
-          isLogged: true,
-          user: { ...user, password: "" },
-        });
+      if (!verifyPassword) {
+        const error = new Error("user credentials do not match");
+        error.statusCode = 400;
+        return next(error);
       }
 
-      return res.status(401).json({
+      return res.json({
         success: true,
         isLogged: true,
-        message: "user credentials do not match",
+        user: { ...user, password: "" },
       });
     }
   });
