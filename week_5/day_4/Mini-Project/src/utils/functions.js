@@ -42,7 +42,7 @@ export function updateToFile(filePath, newTask, fn) {
 
       const newData = data.map((task) => {
         if (task.id == newTask.id) {
-          return { ...task, ...newTask };
+          return mergeClean(task, newTask);
         }
         return task;
       });
@@ -86,4 +86,14 @@ export function deleteFromFile(filePath, id, fn) {
   } catch (error) {
     fn([], error);
   }
+}
+
+function mergeClean(target, source) {
+  const newData = { ...target };
+  for (const [key, value] of Object.entries(source)) {
+    if (value != null && value !== "" && value !== undefined) {
+      newData[key] = value;
+    }
+  }
+  return newData;
 }
