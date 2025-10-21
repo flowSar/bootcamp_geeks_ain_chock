@@ -1,0 +1,18 @@
+[
+  {
+    "firstname": "brahim",
+    "lastname": "sar",
+    "email": "brahim.sar@gmail.com",
+    "username": "ibrahimsar",
+    "password": "$2b$10$0PxatNzFQdnHn0sS/4hhXuU91SJIJ4x2e.7FnfIRnu3g1BfrNsxt.",
+    "id": 1
+  },
+  {
+    "firstname": "brahim-sar151",
+    "lastname": "sar",
+    "email": "brahim.sary@gmail.com",
+    "username": "ibrahimsar",
+    "password": "$2b$10$oms1PpeM/HEfPbFb5y1d6.Yg9cszbMayaLG352IErM6Xu927NuPP.",
+    "id": "2"
+  }
+]
