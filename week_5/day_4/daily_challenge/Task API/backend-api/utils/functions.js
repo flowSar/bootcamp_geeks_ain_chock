@@ -15,10 +15,7 @@ export function isExist(filePath, user, fn) {
       }
 
       if (element.username === user.username) {
-        return fn(
-          { ...element, password: "hidden" },
-          "This username already exists"
-        );
+        return fn({ ...element }, "This username already exists");
       }
     }
     // If we reached here, both are unique

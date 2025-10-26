@@ -3,7 +3,7 @@ import { fileURLToPath } from "url";
 import { isExist, writeToFile } from "../../utils/functions.js";
 import bcrypt from "bcrypt";
 
-export const register = async (req, res) => {
+export const register = async (req, res, next) => {
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = path.dirname(__filename);
   const filePath = path.join(__dirname, "../../users.json");
@@ -41,7 +41,7 @@ export const register = async (req, res) => {
   });
 };
 
-export const login = async (req, res) => {
+export const login = async (req, res, next) => {
   const __filename = fileURLToPath(import.meta.url);
 
   const __dirname = path.dirname(__filename);
@@ -62,13 +62,17 @@ export const login = async (req, res) => {
     password,
   };
   // check if the username exist
-  isExist(filePath, loginUser, async (result, user, err) => {
-    if (err) {
-      return res.status(400).json({ success: false, message: err });
+  isExist(filePath, loginUser, async (user, err) => {
+    if (!user) {
+      return res
+        .status(400)
+        .json({ success: false, message: "this user does not exist" });
     }
+
     // if the user exist
-    if (result) {
+    if (user) {
       const hashedPassword = user.password;
+
       const verifyPassword = await bcrypt.compare(password, hashedPassword);
 
       if (!verifyPassword) {

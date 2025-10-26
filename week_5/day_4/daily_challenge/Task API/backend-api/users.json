@@ -14,5 +14,13 @@
     "username": "ibrahimsar",
     "password": "$2b$10$oms1PpeM/HEfPbFb5y1d6.Yg9cszbMayaLG352IErM6Xu927NuPP.",
     "id": "2"
+  },
+  {
+    "firstname": "sarouri",
+    "lastname": "brahim",
+    "email": "brahim.sar151@gmail.com",
+    "username": "shado.flow",
+    "password": "$2b$10$CtzbORF5J9tRLF7uzvls1uPPbH0jNTw2ljlH48qiuj0s5hNxtH9lS",
+    "id": 3
   }
 ]
