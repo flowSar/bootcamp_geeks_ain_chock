@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      #login-message {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="p-4">
+      <p class="py-4 text-xl">Log In:</p>
+      <form id="login-form"" class="space-y-2">
+        <label for="username" class="block">Username: </label>
+        <input
+          id="username"
+          class="border border-gray-400 py-2 px-4 rounded-md"
+          type="text"
+          name="username"
+          placeholder="username"
+        />
+        <label for="password" class="block">password: </label>
+        <input
+          id="password"
+          class="border border-gray-400 py-2 px-4 rounded-md"
+          type="password"
+          name="password"
+          placeholder="password"
+        />
+        <input
+          class="submitBtn block bg-gray-500 rounded-md py-2 px-6 text-white cursor-pointer"
+          type="submit"
+          value="Login"
+        />
+      </form>
+      <p id="login-message" class="text-red-500 py-4">logi failed</p>
+    </div>
+    <script>
+      const usernameInput = document.querySelector("#username");
+      const passwordInput = document.querySelector("#password");
+      const submitBtn = document.querySelector(".submitBtn");
+      const loginError = document.getElementById("login-message");
+            const form = document.getElementById("login-form");
+      submitBtn.disabled = true;
+
+      let username = "";
+      let password = "";
+      usernameInput.addEventListener("keyup", (e) => {
+        username = e.target.value;
+        releaseBtn(username, password);
+      });
+      passwordInput.addEventListener("keyup", (e) => {
+        password = e.target.value;
+        releaseBtn(username, password);
+      });
+      submitBtn.addEventListener("click", async (e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+        const res = await fetch("http://localhost:3344/auth/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+        const result = await res.json();
+        if (!res.ok) {
+          console.log(result);
+          loginError.innerHTML = result["message"];
+          loginError.style.display = "block";
+        } else {
+          loginError.innerHTML = `Hi ${data.username} welcome back again!`;
+          loginError.style.color = "black";
+          loginError.style.display = "block";
+        }
+ 
+      });
+
+      function releaseBtn(username, password) {
+        if (username && password) submitBtn.disabled = false;
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+    <style>
+      #firstname-error {
+        display: none;
+      }
+      #lastname-error {
+        display: none;
+      }
+      #username-error {
+        display: none;
+      }
+      #email-error {
+        display: none;
+      }
+      #password-error {
+        display: none;
+      }
+      #register-message {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="pl-16 pt-16">
+      <p class="text-3xl pb-8">Register</p>
+      <form id="register-form" class="space-y-2" method="POST">
+        <label for="firstname" class="block">First name: </label>
+        <input
+          id="firstname"
+          class="border border-gray-400 py-2 px-4 rounded-md"
+          type="text"
+          name="firstname"
+          placeholder="firstname"
+        />
+        <p id="firstname-error" class="text-red-500 text-sm">Error</p>
+        <label for="lastname" class="block">Last name: </label>
+        <input
+          id="lastname"
+          class="border border-gray-400 py-2 px-4 rounded-md"
+          type="text"
+          name="lastname"
+          placeholder="lastname"
+        />
+        <p id="lastname-error" class="text-red-500 text-sm">Error</p>
+        <label for="email" class="block">Email: </label>
+        <input
+          id="email"
+          class="border border-gray-400 py-2 px-4 rounded-md"
+          type="text"
+          name="email"
+          placeholder="email"
+        />
+        <p id="email-error" class="text-red-500 text-sm">Error</p>
+        <label for="username" class="block">Username: </label>
+        <input
+          id="username"
+          class="border border-gray-400 py-2 px-4 rounded-md"
+          type="text"
+          name="username"
+          placeholder="username"
+        />
+        <p id="username-error" class="text-red-500 text-sm">Error</p>
+        <label for="password" class="block">password: </label>
+        <input
+          id="password"
+          class="border border-gray-400 py-2 px-4 rounded-md"
+          type="password"
+          name="password"
+          placeholder="password"
+        />
+        <p id="password-error" class="text-red-500 text-sm">Error</p>
+        <input
+          class="submitBtn block bg-gray-500 rounded-md py-2 px-6 text-white cursor-pointer"
+          type="submit"
+          value="Register"
+          id="submit-btn"
+        />
+        <p id="register-message" class="text-red-500 text-sm">Error</p>
+      </form>
+    </div>
+    <script>
+      const submitBtn = document.getElementById("submit-btn");
+      const form = document.getElementById("register-form");
+      const registerError = document.getElementById("register-message");
+      submitBtn.addEventListener("click", async (e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+        const res = await fetch("http://localhost:3344/auth/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+        if (!res.ok) {
+          const result = await res.json();
+          registerError.innerHTML = result["message"];
+          registerError.style.display = "block";
+        }
+        registerError.innerHTML = result["Hello Your account is now created!"];
+        egisterError.style.color = "black";
+        registerError.style.display = "block";
+      });
+    </script>
+  </body>
+</html>
